@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- =========================================================================
+      **  BEGINNING OF EDITABLE SECTION  *****************************************
+      ============================================================================
+      Edit the text associated with NAME_STRING, CARD_BEGINNING_LINE,
+      CARD_MESSAGE_BODY, CARD_SIGN_OFF, and OPENING_ENVELOPE_AND_CARD_DIALOGUE
+      to customize your envelope, card message, and text displayed above the
+      card as the recipient opens the envelope and card!
+
+      Editable text is between the quotation marks on the right side of the
+      equal sign. For example:
+
+      const ENVELOPE_LABEL = "Tiffany"; <= you can change Tiffany to something else
+
+      Other notes:
+      - If you'd like to include a quotation mark within the string, escape the
+      character by adding a backslash \ before the quotation mark, i.e. \"
+      - Read more about strings in JavaScript here:
+      https://www.w3schools.com/js/js_strings.asp
+    =========================================================================== -->
+  <script>
+    // 1. Label on the envelope, e.g. recipient name.
+    const ENVELOPE_LABEL = "Tiffany";
+    // 2. The beginning, top line of the card, e.g. "Dear recipient name,".
+    const CARD_BEGINNING_LINE = "Dear Tiffany,";
+    // 3. Message in the card; recommended length of less than 500 characters.
+    const CARD_MESSAGE_BODY =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    // 4. The last, bottom line of the card, e.g. "Sincerely, me".
+    const CARD_SIGN_OFF = "Sincerely, Tiffany";
+    // 5. Highlighted text above card.
+    const OPENING_ENVELOPE_AND_CARD_DIALOGUE = [
+      // flipping over envelope
+      // first prompt is always "open the envelope" to guide the recipient!
+      "keep going!",
+      "some more clicking to go!",
+      // opening envelope flap and removing card from envelope
+      "take the card out of the envelope",
+      "hey!",
+      "how's it going?",
+      "i hope you are having a good day",
+      "i hope you encounter good html files",
+      "thanks for opening this one :)",
+      // putting envelope aside
+      "i wanted to say thank you",
+      "so i wrote a card",
+      // opening card
+      "almost there...",
+      "so close to the end!",
+      "the end!",
+    ];
+  </script>
+  <!-- =========================================================================
+    **  END OF EDITABLE SECTION  *************************************************
+    ========================================================================== -->
+  <meta charset="UTF-8">
+  <title>thankyou</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    /* request that window is at least 800px wide and 600px tall */
+
+    @media (max-width: 799px),
+    (max-height: 599px) {
+      #request-larger-screen {
+        display: block;
+      }
+    }
+
+    @media (min-width: 800px) and (min-height : 600px) {
+      #request-larger-screen {
+        display: none;
+      }
+    }
+
+    /* fade in on page load */
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0.2;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Lora', serif;
+      color: #242424;
+    }
+
+    button {
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    #container {
+      position: relative;
+    }
+
+    #img-box {
+      position: relative;
+      width: 800px;
+      cursor: pointer;
+      animation: 1.6s ease-in 0s 1 fadeIn;
+    }
+
+    /* to center name */
+
+    #envelope-box {
+      position: absolute;
+      top: 160px;
+      left: 121px;
+      width: 420px;
+      height: 305px;
+      overflow: hidden;
+    }
+
+    #name,
+    #message {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      max-width: 380px;
+      max-height: 300px;
+    }
+
+    #name {
+      text-align: center;
+      font-size: 56px;
+    }
+
+    #message {
+      display: none;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    #accompanying-text {
+      position: absolute;
+      max-width: 600px;
+      top: 1.5em;
+      left: 0;
+      font-size: 16px;
+      line-height: 40px;
+    }
+
+    #click-to-continue {
+      display: none;
+    }
+
+    #click-to-continue,
+    #replay-button {
+      line-height: 40px;
+      border-style: none;
+      position: absolute;
+      cursor: pointer;
+      font-size: 24px;
+      color: #242424;
+      padding: 0.75em 2em;
+      right: 0;
+      bottom: 2.5em;
+    }
+
+    #replay {
+      display: none;
+    }
+
+    #instructions-promo {
+      position: absolute;
+      right: 0;
+      bottom: 0em;
+    }
+
+    #footer {
+      font-size: 14px;
+      margin-top: 1em;
+      left: 0;
+      max-width: 800px;
+    }
+
+    #instructions {
+      display: none;
+    }
+
+    #instructions-body {
+      margin-top: 0em;
+    }
+
+    #credits {
+      margin-top: 2em;
+    }
+
+    .highlight {
+      display: inline-block;
+      padding: 0.5em 1.5em;
+      background-color: #eaf5f5;
+    }
+
+    .button-hover {
+      background-color: #fff86a;
+      transition: background-color 0.15s ease-in;
+    }
+
+    .button-hover:hover {
+      background: #fdeb4c;
+    }
+
+    .italicize {
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="request-larger-screen" class="italicize">
+      this card is best viewed with screen dimensions of over 800px wide and 600px tall. thanks!
+    </div>
+    <div id="img-box">
+      <div id="envelope-box">
+        <p id="name"></p>
+        <p id="message"></p>
+      </div>
+      <img id="img-main" src="https://live.staticflickr.com/65535/50332608296_15ff716bf1_c.jpg" alt="Aerial view of table with closed envelope with card recipient's name, three uncapped pens, and one mechanical pencil">
+      <!-- span for highlight css -->
+      <span id="accompanying-text" class="highlight">open the envelope</span>
+      <button id="click-to-continue" class="highlight button-hover">(click)</button>
+      <div id="replay">
+        <button id="replay-button" class="button-hover">replay card</button>
+        <p id="instructions-promo" class="highlight">read below for instructions to make your own card</p>
+      </div>
+    </div>
+    <div id="footer">
+      <div id="instructions">
+        <p id="instructions-body"> to make and send your own card: save this file
+          <span class="italicize">(right click > save as > webpage, html only/page source)</span>. open the file in the text editor of your choice
+          and make edits where indicated. save the file and send it to your recipient! </p>
+      </div>
+      <p id="credits" class="italicize">physical virtual thank you card by
+        <a href="https://www.instagram.com/anotherbrowsertab/">@anotherbrowsertab</a>
+      </p>
+    </div>
+  </div>
+  <script>
+    const name = document.getElementById("name");
+    name.innerText = ENVELOPE_LABEL;
+    const background = document.getElementById("img-main");;
+    const clickToContinue = document.getElementById("click-to-continue");
+    const instructions = document.getElementById("instructions");;
+    const message = document.getElementById("message");
+    message.innerText = CARD_BEGINNING_LINE + "\n\n" + CARD_MESSAGE_BODY + "\n\n" + CARD_SIGN_OFF;
+    const replay = document.getElementById("replay");;
+    const replayButton = document.getElementById("replay-button");
+    const config = {
+      attributes: true
+    }; // for background img change
+    const UNFLIPPED_ENVELOPE_IMG = 2; // when to hide name
+    const NUM_IMG = 14; // when to show message in opened card
+    const OPENING_DIALOGUE = "click to open envelope";
+    const BACKGROUND_ALT_TEXT = [
+      // flipping over envelope
+      "Aerial view of table with closed envelope with card recipient's name, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with closed envelope with card recipient's name, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with back of tilted closed envelope, three uncapped pens, and one mechanical pencil",
+      // opening envelope flap and removing card from envelope
+      "Aerial view of table with closed envelope with its back facing up, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with opened envelope with its back facing up, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with opened envelope with inside card getting removed, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with card with back side up on top of opened envelope, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with card beginning to get flipped over to its front side on top of opened envelope, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with tilted thank you card on top of opened envelope, three uncapped pens, and one mechanical pencil",
+      // putting envelope aside
+      "Aerial view of table with thank you card on top of opened envelope, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with thank you card on top of opened envelope, three uncapped pens, and one mechanical pencil",
+      // opening card
+      "Aerial view of table with thank you card, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with thank you card getting opened, three uncapped pens, and one mechanical pencil",
+      "Aerial view of table with open thank you card, three uncapped pens, and one mechanical pencil"
+    ];
+    const BACKGROUND_URLS = [
+      "https://live.staticflickr.com/65535/50332608296_15ff716bf1_c.jpg",
+      "https://live.staticflickr.com/65535/50332772742_2e2f823fd5_c.jpg",
+      "https://live.staticflickr.com/65535/50332772727_a1af27a816_c.jpg",
+      "https://live.staticflickr.com/65535/50332772692_d278f4420e_c.jpg",
+      "https://live.staticflickr.com/65535/50332772677_419d2072db_c.jpg",
+      "https://live.staticflickr.com/65535/50331925458_d69682c094_c.jpg",
+      "https://live.staticflickr.com/65535/50331925428_01cea560dd_c.jpg",
+      "https://live.staticflickr.com/65535/50332608211_c6f9af42b0_c.jpg",
+      "https://live.staticflickr.com/65535/50332608171_1fcc29b483_c.jpg",
+      "https://live.staticflickr.com/65535/50331925393_911f256ceb_c.jpg",
+      "https://live.staticflickr.com/65535/50331925378_f0880c86c5_c.jpg",
+      "https://live.staticflickr.com/65535/50332772617_a483356010_c.jpg",
+      "https://live.staticflickr.com/65535/50332608136_4a3164da6c_c.jpg",
+      "https://live.staticflickr.com/65535/50332608121_c579189536_c.jpg"
+    ]
+    let counter = 1; // track progress of card/envelope opening
+    // animate card
+    function animateCard() {
+      counter++;
+      const imgMain = document.getElementById("img-main");
+      const accompanyingText = document.getElementById("accompanying-text");
+      imgMain.src = BACKGROUND_URLS[counter - 1];
+      imgMain.alt = BACKGROUND_ALT_TEXT[counter - 1];
+      accompanyingText.innerText = counter > 1 ? OPENING_ENVELOPE_AND_CARD_DIALOGUE[counter - 2] : OPENING_DIALOGUE;
+      if (counter > UNFLIPPED_ENVELOPE_IMG) {
+        hideName();
+      }
+      if (counter === NUM_IMG) {
+        // message shown in enable animation click for timing 
+        showReplayButton();
+        showInstructions();
+      }
+      // prevent clicking forward until current background image has loaded
+      preventAnimationClick();
+    }
+    // helper functions to hide/show name, message, replay button
+    function hideName() {
+      name.style.display = "none";
+    }
+
+    function showName() {
+      name.style.display = "flex";
+    }
+
+    function hideMessage() {
+      message.style.display = "none";
+    }
+
+    function showMessage() {
+      message.style.display = "flex";
+    }
+
+    function hideReplayButton() {
+      replay.style.display = "none";
+    }
+
+    function showReplayButton() {
+      replay.style.display = "block";
+    }
+
+    function showInstructions() {
+      instructions.style.display = "block";
+    }
+
+    function preventAnimationClick() {
+      const imgMain = document.getElementById("img-box");
+      imgMain.removeEventListener("click", animateCard, true);
+      imgMain.style.cursor = "auto";
+      clickToContinue.style.display = "none";
+    }
+    // add event listener to main image
+    function enableAnimationClick() {
+      const imgMain = document.getElementById("img-box");
+      imgMain.addEventListener("click", animateCard, true);
+      imgMain.style.cursor = "pointer";
+      clickToContinue.style.display = "block";
+      if (counter === NUM_IMG) {
+        showMessage();
+        background.removeEventListener('load', enableAnimationClick, false);
+        preventAnimationClick();
+      }
+    }
+    // restart card opening from beginning
+    function resetGame() {
+      counter = 0;
+      background.addEventListener('load', enableAnimationClick, false);
+      showName();
+      hideMessage();
+      hideReplayButton();
+      animateCard();
+    }
+    replayButton.addEventListener("click", resetGame, false);
+    background.addEventListener('load', enableAnimationClick, false);
+  </script>
+</body>
+
+</html>
