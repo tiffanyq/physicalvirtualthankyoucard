@@ -59,20 +59,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>thankyou</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    /* request that window is at least 800px wide and 600px tall */
-
-    @media (max-width: 799px),
-    (max-height: 599px) {
+    @media (max-width: 499px)
+     {
       #request-larger-screen {
         display: block;
       }
+      #main-content {
+        display: none;
+      }
     }
 
-    @media (min-width: 800px) and (min-height : 600px) {
+    @media (min-width: 500px) {
       #request-larger-screen {
         display: none;
+      }
+      #main-content {
+        display: block;
       }
     }
 
@@ -186,10 +190,6 @@
       max-width: 800px;
     }
 
-    #instructions {
-      display: none;
-    }
-
     #instructions-body {
       margin-top: 0em;
     }
@@ -216,37 +216,42 @@
     .italicize {
       font-style: italic;
     }
+
+    .emph {
+      font-weight: 700;
+    }
   </style>
 </head>
 
 <body>
   <div id="container">
-    <div id="request-larger-screen" class="italicize">
-      this card is best viewed with screen dimensions of over 800px wide and 600px tall. thanks!
+    <div id="request-larger-screen">
+     <p>to run javascript in this local file and for an optimized card experience, please <span class="emph">view on desktop</span> with screen width > 500px. thanks!</p>
     </div>
-    <div id="img-box">
-      <div id="envelope-box">
-        <p id="name"></p>
-        <p id="message"></p>
+    <div id="main-content">
+      <p class="italicize">if tapping on the image continually does nothing, please try switching to a desktop device</p>
+      <div id="img-box">
+        <div id="envelope-box">
+          <p id="name"></p>
+          <p id="message"></p>
+        </div>
+        <img id="img-main" src="https://live.staticflickr.com/65535/50332608296_15ff716bf1_c.jpg" alt="Aerial view of table with closed envelope with card recipient's name, three uncapped pens, and one mechanical pencil">
+        <!-- span for highlight css -->
+        <span id="accompanying-text" class="highlight">open the envelope</span>
+        <button id="click-to-continue" class="highlight button-hover">(click)</button>
+        <div id="replay">
+          <button id="replay-button" class="button-hover">replay card</button>
+          <p id="instructions-promo" class="highlight">read below for instructions to make your own card</p>
+        </div>
       </div>
-      <img id="img-main" src="https://live.staticflickr.com/65535/50332608296_15ff716bf1_c.jpg" alt="Aerial view of table with closed envelope with card recipient's name, three uncapped pens, and one mechanical pencil">
-      <!-- span for highlight css -->
-      <span id="accompanying-text" class="highlight">open the envelope</span>
-      <button id="click-to-continue" class="highlight button-hover">(click)</button>
-      <div id="replay">
-        <button id="replay-button" class="button-hover">replay card</button>
-        <p id="instructions-promo" class="highlight">read below for instructions to make your own card</p>
-      </div>
-    </div>
-    <div id="footer">
-      <div id="instructions">
-        <p id="instructions-body"> to make and send your own card: save this file
+      <div id="footer">
+        <p id="instructions-body"> <span class="emph">to make and send your own card: </span> save this file
           <span class="italicize">(right click > save as > webpage, html only/page source)</span>. open the file in the text editor of your choice
-          and make edits where indicated. save the file and send it to your recipient! </p>
+          and make edits where indicated. save the file and tell the recipient to open the file on desktop if possible (to be able to load javascript)! </p>
+        <p id="credits" class="italicize">physical virtual thank you card by
+          <a href="https://www.instagram.com/anotherbrowsertab/">@anotherbrowsertab</a>
+        </p>
       </div>
-      <p id="credits" class="italicize">physical virtual thank you card by
-        <a href="https://www.instagram.com/anotherbrowsertab/">@anotherbrowsertab</a>
-      </p>
     </div>
   </div>
   <script>
@@ -316,7 +321,6 @@
       if (counter === NUM_IMG) {
         // message shown in enable animation click for timing 
         showReplayButton();
-        showInstructions();
       }
       // prevent clicking forward until current background image has loaded
       preventAnimationClick();
@@ -344,10 +348,6 @@
 
     function showReplayButton() {
       replay.style.display = "block";
-    }
-
-    function showInstructions() {
-      instructions.style.display = "block";
     }
 
     function preventAnimationClick() {
@@ -379,6 +379,7 @@
     }
     replayButton.addEventListener("click", resetGame, false);
     background.addEventListener('load', enableAnimationClick, false);
+    enableAnimationClick(); // in case background already loaded
   </script>
 </body>
 
