@@ -61,165 +61,21 @@
   <title>thankyou</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    @media (max-width: 499px)
-     {
-      #request-larger-screen {
-        display: block;
-      }
-      #main-content {
-        display: none;
-      }
-    }
-
-    @media (min-width: 500px) {
-      #request-larger-screen {
-        display: none;
-      }
-      #main-content {
-        display: block;
-      }
-    }
-
-    /* fade in on page load */
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0.2;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    html,
-    body {
-      height: 100%;
-      font-family: 'Lora', serif;
-      color: #242424;
-    }
-
-    button {
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-    }
-
-    #container {
-      position: relative;
-    }
-
-    #img-box {
-      position: relative;
-      width: 800px;
-      cursor: pointer;
-      animation: 1.6s ease-in 0s 1 fadeIn;
-    }
-
-    /* to center name */
-
-    #envelope-box {
-      position: absolute;
-      top: 160px;
-      left: 121px;
-      width: 420px;
-      height: 305px;
-      overflow: hidden;
-    }
-
-    #name,
-    #message {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: auto;
-      max-width: 380px;
-      max-height: 300px;
-    }
-
-    #name {
-      text-align: center;
-      font-size: 56px;
-    }
-
-    #message {
-      display: none;
-      font-size: 14px;
-      text-align: left;
-    }
-
-    #accompanying-text {
-      position: absolute;
-      max-width: 600px;
-      top: 1.5em;
-      left: 0;
-      font-size: 16px;
-      line-height: 40px;
-    }
-
-    #click-to-continue {
-      display: none;
-    }
-
-    #click-to-continue,
-    #replay-button {
-      line-height: 40px;
-      border-style: none;
-      position: absolute;
-      cursor: pointer;
-      font-size: 24px;
-      color: #242424;
-      padding: 0.75em 2em;
-      right: 0;
-      bottom: 2.5em;
-    }
-
-    #replay {
-      display: none;
-    }
-
-    #instructions-promo {
-      position: absolute;
-      right: 0;
-      bottom: 0em;
-    }
-
-    #footer {
-      font-size: 14px;
-      margin-top: 1em;
-      left: 0;
-      max-width: 800px;
-    }
-
-    #instructions-body {
-      margin-top: 0em;
-    }
-
-    #credits {
-      margin-top: 2em;
-    }
-
-    .highlight {
-      display: inline-block;
-      padding: 0.5em 1.5em;
-      background-color: #eaf5f5;
-    }
-
-    .button-hover {
-      background-color: #fff86a;
-      transition: background-color 0.15s ease-in;
-    }
-
-    .button-hover:hover {
-      background: #fdeb4c;
-    }
-
-    .italicize {
-      font-style: italic;
-    }
-
-    .emph {
-      font-weight: 700;
-    }
+    @media (max-width: 499px) { #request-larger-screen { display: block; } #main-content { display: none; } } @media (min-width:
+    500px) { #request-larger-screen { display: none; } #main-content { display: block; } } /* fade in on page load */ @keyframes
+    fadeIn { 0% { opacity: 0.2; } 100% { opacity: 1; } } html, body { height: 100%; font-family: 'Lora', serif; color: #242424;
+    } button { font-family: Arial, sans-serif; font-weight: 700; } #container { position: relative; } #img-box { position: relative;
+    width: 800px; cursor: pointer; animation: 1.6s ease-in 0s 1 fadeIn; } /* to center name */ #envelope-box { position: absolute;
+    top: 160px; left: 121px; width: 420px; height: 305px; overflow: hidden; } #name, #message { height: 100%; display: flex;
+    align-items: center; justify-content: center; margin: auto; max-width: 380px; max-height: 300px; } #name { text-align: center;
+    font-size: 56px; } #message { display: none; font-size: 14px; text-align: left; } #accompanying-text { position: absolute;
+    max-width: 600px; top: 1.5em; left: 0; font-size: 16px; line-height: 40px; } #click-to-continue { display: none; } #click-to-continue,
+    #replay-button { line-height: 40px; border-style: none; position: absolute; cursor: pointer; font-size: 24px; color: #242424;
+    padding: 0.75em 2em; right: 0; bottom: 2.5em; } #replay { display: none; } #instructions-promo { position: absolute; right:
+    0; bottom: 0em; } #footer { font-size: 14px; margin-top: 1em; left: 0; max-width: 800px; } #instructions-body { margin-top:
+    0em; } #credits { margin-top: 2em; } .highlight { display: inline-block; padding: 0.5em 1.5em; background-color: #eaf5f5;
+    } .button-hover { background-color: #fff86a; transition: background-color 0.15s ease-in; } .button-hover:hover { background:
+    #fdeb4c; } .italicize { font-style: italic; } .emph { font-weight: 700; }
   </style>
 </head>
 
@@ -229,7 +85,6 @@
      <p>to run javascript in this local file and for an optimized card experience, please <span class="emph">view on desktop</span> with screen width > 500px. thanks!</p>
     </div>
     <div id="main-content">
-      <p class="italicize">if tapping on the image continually does nothing, please try switching to a desktop device</p>
       <div id="img-box">
         <div id="envelope-box">
           <p id="name"></p>
@@ -245,6 +100,7 @@
         </div>
       </div>
       <div id="footer">
+        <p class="italicize">if tapping on the image continually does nothing, please try switching to a desktop device</p>
         <p id="instructions-body"> <span class="emph">to make and send your own card: </span> save this file
           <span class="italicize">(right click > save as > webpage, html only/page source)</span>. open the file in the text editor of your choice
           and make edits where indicated. save the file and tell the recipient to open the file on desktop if possible (to be able to load javascript)! </p>
