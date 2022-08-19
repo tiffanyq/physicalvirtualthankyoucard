@@ -70,7 +70,7 @@
     align-items: center; justify-content: center; margin: auto; max-width: 380px; max-height: 300px; } #name { text-align: center;
     font-size: 56px; } #message { display: none; font-size: 14px; text-align: left; } #accompanying-text { position: absolute;
     max-width: 600px; top: 1.5em; left: 0; font-size: 16px; line-height: 40px; } #click-to-continue { display: none; } #click-to-continue,
-    #replay-button { line-height: 40px; border-style: none; position: absolute; cursor: pointer; font-size: 24px; color: #242424;
+    #replay-button { line-height: 28px; border-style: none; position: absolute; cursor: pointer; font-size: 18px; color: #242424;
     padding: 0.75em 2em; right: 0; bottom: 2.5em; } #replay { display: none; } #instructions-promo { position: absolute; right:
     0; bottom: 0em; } #footer { font-size: 14px; margin-top: 1em; left: 0; max-width: 800px; } #instructions-body { margin-top:
     0em; } #credits { margin-top: 2em; } .highlight { display: inline-block; padding: 0.5em 1.5em; background-color: #eaf5f5;
@@ -93,9 +93,9 @@
         <img id="img-main" src="https://live.staticflickr.com/65535/50332608296_15ff716bf1_c.jpg" alt="Aerial view of table with closed envelope with card recipient's name, three uncapped pens, and one mechanical pencil">
         <!-- span for highlight css -->
         <span id="accompanying-text" class="highlight">open the envelope</span>
-        <button id="click-to-continue" class="highlight button-hover">(click)</button>
+        <button id="click-to-continue" class="highlight button-hover">click/press enter</button>
         <div id="replay">
-          <button id="replay-button" class="button-hover">replay card</button>
+          <button id="replay-button" class="button-hover">click here to replay</button>
           <p id="instructions-promo" class="highlight">read below for instructions to make your own card</p>
         </div>
       </div>
@@ -109,7 +109,7 @@
         </ol>
         <p class="emph">remind the recipient to reflect on a source's trustworthiness before opening file attachments whenever possible!</p>
         <p id="credits" class="italicize">physical virtual thank you card by
-          <a href="https://www.instagram.com/anotherbrowsertab/">@anotherbrowsertab</a>
+          <a href="https://www.instagram.com/anotherbrowsertab/" target="_blank">@anotherbrowsertab</a>
         </p>
       </div>
     </div>
@@ -185,6 +185,14 @@
       // prevent clicking forward until current background image has loaded
       preventAnimationClick();
     }
+
+    function animateCardHandler(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        animateCard();
+     }
+    }
+
     // helper functions to hide/show name, message, replay button
     function hideName() {
       name.style.display = "none";
@@ -213,6 +221,7 @@
     function preventAnimationClick() {
       const imgMain = document.getElementById("img-box");
       imgMain.removeEventListener("click", animateCard, true);
+      document.body.removeEventListener("keydown", animateCardHandler, true);
       imgMain.style.cursor = "auto";
       clickToContinue.style.display = "none";
     }
@@ -220,6 +229,7 @@
     function enableAnimationClick() {
       const imgMain = document.getElementById("img-box");
       imgMain.addEventListener("click", animateCard, true);
+      document.body.addEventListener("keydown", animateCardHandler, true);
       imgMain.style.cursor = "pointer";
       clickToContinue.style.display = "block";
       if (counter === NUM_IMG) {
